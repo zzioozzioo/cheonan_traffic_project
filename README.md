@@ -20,7 +20,7 @@ cheonan_traffic_project/
 │   └─ modeling/           # 모델링 코드
 │
 ├─ requirements.txt        # 프로젝트 패키지/환경 관리
-└─ README.md               # 프로젝트 개요, 실행법 등
+└─ README.md               # 프로젝트 개요, 실행법
 
 # 실행 시
 # python3 -m venv venv
