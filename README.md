@@ -1,4 +1,5 @@
 # 폴더 구조
+```
 cheonan_traffic_project/
 │
 ├─ data/                   # 원본/가공 데이터
@@ -21,13 +22,14 @@ cheonan_traffic_project/
 │
 ├─ requirements.txt        # 프로젝트 패키지/환경 관리
 └─ README.md               # 프로젝트 개요, 실행법
+```
 
-# 실행 시
-# python3 -m venv venv
-# source venv/bin/activate(Mac/Linux)
+### 실행 시
+- python3 -m venv venv
+- source venv/bin/activate(Mac/Linux)
 
-# 기상 데이터 openAPI
-# 인증키: 5c0964a3a13033d49d842bf1e8bfdb0875bcb82588cf3d9324d4d94c7adfad0b
-# 엔드포인트: https://apis.data.go.kr/1360000/AsosHourlyInfoService
+### 기상 데이터 openAPI
+- 인증키: 5c0964a3a13033d49d842bf1e8bfdb0875bcb82588cf3d9324d4d94c7adfad0b
+- 엔드포인트: https://apis.data.go.kr/1360000/AsosHourlyInfoService
 
 
