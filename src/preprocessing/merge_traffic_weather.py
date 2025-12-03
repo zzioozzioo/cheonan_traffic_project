@@ -4,8 +4,8 @@ import os
 # ----------------------------
 # 1. 파일 경로 설정
 # ----------------------------
-traffic_file = os.path.join("data/processed", "traffic_merged_clean.csv")
-weather_file = os.path.join("data/processed", "weather_merged.csv")
+traffic_file = os.path.join("data/processed", "traffic_clean.csv")
+weather_file = os.path.join("data/processed", "weather.csv")
 output_file = os.path.join("data/merged", "traffic_weather_merged.csv")
 
 # ----------------------------

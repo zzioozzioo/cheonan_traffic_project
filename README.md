@@ -4,12 +4,13 @@ cheonan_traffic_project/
 │
 ├─ data/                   # 원본/가공 데이터
 │   ├─ raw/                # 서버에서 수집한 CSV 원본(traffic 데이터)
-│   ├─ processed/          # 전처리 후 분석용 CSV
+│   ├─ processed/          # 전처리 후 가공 데이터
 │   └─ merged/             # 통합된 전체 데이터
 │
 ├─ notebooks/              # 실험/분석용 Jupyter Notebook
 │   ├─ 01_EDA.ipynb
-│   └─ 02_Clustering.ipynb
+│   ├─ 02_Clustering.ipynb
+│   └─ 03_Modeling.ipynb
 │
 ├─ src/                    # 실제 코드
 │   ├─ data_collection/    # 데이터 수집 스크립트

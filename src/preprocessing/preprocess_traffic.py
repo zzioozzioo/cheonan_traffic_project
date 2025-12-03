@@ -2,9 +2,9 @@ import pandas as pd
 import os
 
 # -------------------------------
-# 1. Load traffic_merged.csv
+# 1. Load traffic.csv
 # -------------------------------
-input_path = "./data/processed/traffic_merged.csv"
+input_path = "./data/processed/traffic.csv"
 df = pd.read_csv(input_path)
 
 # -------------------------------
@@ -63,7 +63,7 @@ df_sum = df_sum[["datetime", "intersection", "traffic_volume"]] # 컬럼 순서 
 output_dir = "./data/processed"
 os.makedirs(output_dir, exist_ok=True)
 
-output_path = f"{output_dir}/traffic_merged_clean.csv"
+output_path = f"{output_dir}/traffic_clean.csv"
 df_sum.to_csv(output_path, index=False)
 
 print("완료! 저장됨 →", output_path)

@@ -101,7 +101,7 @@ if all_df:
         "ws": "wind"
     })
 
-    save_path = "/Users/zzioo/School/4-2/창의적문제해결/텀 프로젝트/cheonan_traffic_project/data/processed/weather_merged.csv"
+    save_path = "/Users/zzioo/School/4-2/창의적문제해결/텀 프로젝트/cheonan_traffic_project/data/processed/weather.csv"
     final_df.to_csv(save_path, index=False, encoding="utf-8-sig")
     print(f"✅ 저장 완료: {save_path} (총 {len(final_df)}행)")
 else:

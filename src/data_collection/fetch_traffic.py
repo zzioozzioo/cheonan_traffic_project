@@ -4,7 +4,7 @@ import pandas as pd
 
 # ── 데이터 폴더 & 출력 파일 경로 ──
 RAW_DATA_DIR = "/Users/zzioo/School/4-2/창의적문제해결/텀 프로젝트/cheonan_traffic_project/data/raw"
-OUTPUT_FILE = "/Users/zzioo/School/4-2/창의적문제해결/텀 프로젝트/cheonan_traffic_project/data/processed/traffic_merged.csv"
+OUTPUT_FILE = "/Users/zzioo/School/4-2/창의적문제해결/텀 프로젝트/cheonan_traffic_project/data/processed/traffic.csv"
 
 # ── 파일 목록 가져오기 ──
 all_files = glob.glob(os.path.join(RAW_DATA_DIR, "*.xlsx"))
