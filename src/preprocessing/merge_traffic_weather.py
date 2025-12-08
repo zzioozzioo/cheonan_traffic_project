@@ -1,11 +1,12 @@
 import pandas as pd
 import os
+import holidays
 
 # ----------------------------
 # 1. 파일 경로 설정
 # ----------------------------
 traffic_file = os.path.join("data/processed", "traffic_clean.csv")
-weather_file = os.path.join("data/processed", "weather.csv")
+weather_file = os.path.join("data/processed", "weather_clean.csv")
 output_file = os.path.join("data/merged", "traffic_weather_merged.csv")
 
 # ----------------------------
@@ -17,25 +18,26 @@ weather = pd.read_csv(weather_file)
 # ----------------------------
 #  3. 컬럼명 변경 및 날짜 형식 통일 (merge 기준: YYYY-MM-DD HH:00)
 # ----------------------------
-traffic = traffic.rename(columns={"traffic": "traffic_volume"})
-weather = weather.rename(columns={
-    "time": "datetime",
-    "ta": "temp",
-    "rn": "precipitation",
-    "ws": "wind"
-})
+# traffic = traffic.rename(columns={"traffic": "traffic_volume"})
 
 traffic["datetime"] = pd.to_datetime(traffic["datetime"], errors='coerce')
 weather["datetime"] = pd.to_datetime(weather["datetime"], errors='coerce')
 
+# ----------------------------
+# 4. is_offday 파생변수 생성(공휴일 및 주말 여부 판별)
+# ----------------------------
+kr_holidays = holidays.KR(years=[2024, 2025]) # 한국 공휴일
 
-# ----------------------------
-# 4. 기상 결측치 처리
-#    - 강수량(rn)이 빈칸 → 0
-#    - 그 외(NaN)는 그대로 두되, 필요 시 이후 단계에서 처리
-# ----------------------------
-if "precipitation" in weather.columns:
-    weather["precipitation"] = weather["precipitation"].fillna(0)
+traffic['weekday'] = traffic['datetime'].dt.dayofweek # 주말 플래그 생성
+traffic['is_offday'] = traffic['weekday'].apply(lambda x: 1 if x >= 5 else 0) # 5: 토요일, 6: 일요일
+
+# 공휴일이면 is_offday = 1로 업데이트 (주말/공휴일 중복 가능)
+traffic['date_only'] = traffic['datetime'].dt.normalize() # 날짜만 추출
+traffic.loc[traffic['date_only'].isin(kr_holidays), 'is_offday'] = 1
+
+# 임시 컬럼 제거
+traffic = traffic.drop(columns=['weekday', 'date_only'])
+
 
 # ----------------------------
 # 5. 병합(기상 데이터는 모든 교차로에 동일 적용
@@ -49,22 +51,7 @@ merged = pd.merge(
     how="left"   # traffic 기준 → 교통 데이터가 기준이므로 left
 )
 
-# ----------------------------
-# 6. 이상치 처리 (Rule-based)
-# ----------------------------
-
-# 6-1. 교통량 음수 → 0으로 수정
-merged.loc[merged["traffic_volume"] < 0, "traffic_volume"] = 0
-
-# 6-2. 매우 큰 값 제거/수정 (1시간 교통량이 10만 이상이면 오류로 간주)
-merged.loc[merged["traffic_volume"] > 100000, "traffic_volume"] = 100000
-
-# 6-3. 물리적으로 불가능한 온도값 제거 처리
-if "temp" in merged.columns:
-    merged.loc[merged["temp"] < -40, "temp"] = None
-    merged.loc[merged["temp"] > 50, "temp"] = None
-
-# datetime 형식 맞추기
+# 6. datetime 형식 맞추기
 merged["datetime"] = pd.to_datetime(merged["datetime"], errors="coerce")
 merged["datetime"] = merged["datetime"].dt.strftime("%Y-%m-%d %H:%M").astype(str)
 

@@ -66,11 +66,11 @@ def fetch_asos_hourly_for_day(date):
     df = df[columns_to_keep]
     
 
-    # 주말/공휴일 여부 파생변수 생성
-    tm_dt = pd.to_datetime(df['tm'])
-    is_weekend = tm_dt.dt.weekday >= 5
-    is_holiday = tm_dt.dt.date.isin(kr_holidays)
-    df['is_offday'] = (is_weekend | is_holiday).astype(int)  # 1: 주말/공휴일, 0: 평일
+    # # 주말/공휴일 여부 파생변수 생성
+    # tm_dt = pd.to_datetime(df['tm'])
+    # is_weekend = tm_dt.dt.weekday >= 5
+    # is_holiday = tm_dt.dt.date.isin(kr_holidays)
+    # df['is_offday'] = (is_weekend | is_holiday).astype(int)  # 1: 주말/공휴일, 0: 평일
 
     
     return df
@@ -95,10 +95,10 @@ if all_df:
     final_df = pd.concat(all_df, ignore_index=True)
 
     final_df = final_df.rename(columns={ # 컬럼명 변경
-        "tm": "time",
-        "ta": "temp",
-        "rn": "precipitation",
-        "ws": "wind"
+        "tm": "time", # 시간
+        "ta": "temp", # 기온
+        "rn": "precipitation", # 강수량
+        "ws": "wind" # 풍속
     })
 
     save_path = "/Users/zzioo/School/4-2/창의적문제해결/텀 프로젝트/cheonan_traffic_project/data/processed/weather.csv"
