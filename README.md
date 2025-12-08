@@ -3,25 +3,27 @@
 cheonan_traffic_project/
 │
 ├─ data/                   # 원본/가공 데이터
-│   ├─ raw/                # 서버에서 수집한 CSV 원본(traffic 데이터)
-│   ├─ processed/          # 전처리 후 가공 데이터
-│   └─ merged/             # 통합된 전체 데이터
+│   ├─ raw/                # 서버에서 수집한 CSV 원본(traffic 데이터만 존재)
+│   ├─ processed/          # 전처리한 데이터
+│   └─ merged/             # 통합된 데이터
+│       ├─ traffic_weather_merged.csv           # 통합된 교통량&기상 데이터
+│       └─ traffic_weather_with_cluster.csv     # 최종 데이터셋(클러스터 데이터 포함)
 │
 ├─ notebooks/              # 실험/분석용 Jupyter Notebook
-│   ├─ 01_EDA.ipynb
+│   ├─ 01_EDA.ipynb     
 │   ├─ 02_Clustering.ipynb
-│   └─ 03_Modeling.ipynb
-│
+│   ├─ 03_Modeling.ipynb
+│   └─ 04_PolicySimulation.ipynb
+
 ├─ src/                    # 실제 코드
 │   ├─ data_collection/    # 데이터 수집 스크립트
 │   │   └─ fetch_traffic.py
 │   │   └─ fetch_weather.py
-│   ├─ preprocessing/      # 전처리 스크립트
-│   │   └─ merge_traffic_weather.py 
-│   │   └─ preprocess_traffic.py 
-│   └─ modeling/           # 모델링 코드
+│   └─ preprocessing/      # 전처리 스크립트
+│   │   ├─ preprocess_traffic.py            # 교통량 데이터 전처리
+│   │   ├─ preprocess_weather.py            # 기상 데이터 전처리
+│   │   └─ merge_traffic_weather.py         # 교통량&기상 데이터 통합
 │
-├─ requirements.txt        # 프로젝트 패키지/환경 관리
 └─ README.md               # 프로젝트 개요, 실행법
 ```
 
