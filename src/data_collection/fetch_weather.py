@@ -4,9 +4,7 @@ from datetime import datetime, timedelta
 from urllib.parse import quote
 import holidays
 
-# ==============================
 # 설정
-# ==============================
 SERVICE_KEY = "5c0964a3a13033d49d842bf1e8bfdb0875bcb82588cf3d9324d4d94c7adfad0b"
 ENCODED_KEY = quote(SERVICE_KEY, safe='')  # URL 인코딩
 STATION_ID = "232"  # 천안 ASOS 관측소 ID
@@ -16,18 +14,14 @@ END_DATE   = "20251101"
 # 한국 공휴일
 kr_holidays = holidays.KR(years=[2024, 2025])
 
-# ==============================
 # 날짜 반복 함수 (1일 단위)
-# ==============================
 def daterange_days(start_date, end_date):
     current = start_date
     while current <= end_date:
         yield current
         current += timedelta(days=1)
 
-# ==============================
 # ASOS 1시간 단위 데이터 요청 함수
-# ==============================
 def fetch_asos_hourly_for_day(date):
     url = "https://apis.data.go.kr/1360000/AsosHourlyInfoService/getWthrDataList"
     
@@ -75,9 +69,7 @@ def fetch_asos_hourly_for_day(date):
     
     return df
 
-# ==============================
 # 메인: 반복 요청 & CSV 저장
-# ==============================
 all_df = []
 start = datetime.strptime(START_DATE, "%Y%m%d")
 end   = datetime.strptime(END_DATE, "%Y%m%d")

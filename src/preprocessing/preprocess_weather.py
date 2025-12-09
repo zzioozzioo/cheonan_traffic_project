@@ -1,15 +1,11 @@
 import pandas as pd
 import os
 
-# -------------------------------
-# 1. Load weather.csv
-# -------------------------------
+# 1. 데이터 로드
 input_path = "./data/processed/weather.csv"
 df = pd.read_csv(input_path)
 
-# -------------------------------
 # 2. 컬럼명 수정
-# -------------------------------
 df = df.rename(columns={
     "time": "datetime",
     "ta": "temp",
@@ -17,16 +13,12 @@ df = df.rename(columns={
     "ws": "wind"
 })
 
-# -------------------------------
-# 3. Data type / Format adjustment
-# -------------------------------
+# 3. 날짜 형식 통일
 df["datetime"] = pd.to_datetime(df["datetime"], errors='coerce')
 df["datetime"] = df["datetime"].dt.strftime("%Y-%m-%d %H:%M")
 
 
-# -------------------------------
 # 4. 결측치 및 이상치 처리 (Rule-based)
-# -------------------------------
 # 4-1. 강수량(precipitation) 결측치 → 0으로 처리
 if "precipitation" in df.columns:
     df["precipitation"] = df["precipitation"].fillna(0)
@@ -38,9 +30,7 @@ if "temp" in df.columns:
     df.loc[df["temp"] > 50, "temp"] = None
 
 
-# -------------------------------
-# 5. Output folder 생성 후 저장
-# -------------------------------
+# 5. 저장
 output_dir = "./data/processed"
 os.makedirs(output_dir, exist_ok=True)
 
