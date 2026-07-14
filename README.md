@@ -14,26 +14,23 @@
 
 ---
 
-## 2. 실행 시
+## ▶️ 2. 실행 시
 - python3 -m venv venv
 - source venv/bin/activate(Mac/Linux)
 
 ---
 
-## 🛠 3. 사용 기술 및 개발 환경
-
-
-<div><h3>📚 STACKS</h1></div>
+## <p>📚 3. STACKS
 
 <div> 
 
-### 📊 Data / AI
+### Data / AI
   <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
   <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=Pandas&logoColor=white">
   <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=NumPy&logoColor=white">
   <img src="https://img.shields.io/badge/scikitlearn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white">
 
-### 🛠️ Tools
+### Tools
   <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white"> 
   <img src="https://img.shields.io/badge/Jupyter Notebook-F37626?style=for-the-badge&logo=Jupyter&logoColor=white">
   <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">
