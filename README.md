@@ -104,7 +104,7 @@
 
 ---
 
-## 6. 폴더 구조
+## 📂 6. 폴더 구조
 ```
 cheonan_traffic_project/
 │
